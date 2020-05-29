@@ -1,24 +1,47 @@
-# TestLib
+# ng-packagr-types-error-demo
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
+```
+    Angular CLI: 9.1.7
+    Node: 13.13.0
+    OS: linux x64
 
-## Code scaffolding
+    Angular: 9.1.9
+    ... animations, common, compiler, compiler-cli, core, forms
+    ... platform-browser, platform-browser-dynamic, router
+    Ivy Workspace: Yes
 
-Run `ng generate component component-name --project test-lib` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project test-lib`.
-> Note: Don't forget to add `--project test-lib` or else it will be added to the default project in your `angular.json` file. 
+    Package                            Version
+    ------------------------------------------------------------
+    @angular-devkit/architect          0.901.7
+    @angular-devkit/build-angular      0.901.7
+    @angular-devkit/build-ng-packagr   0.901.7
+    @angular-devkit/build-optimizer    0.901.7
+    @angular-devkit/build-webpack      0.901.7
+    @angular-devkit/core               9.1.7
+    @angular-devkit/schematics         9.1.7
+    @angular/cli                       9.1.7
+    @ngtools/webpack                   9.1.7
+    @schematics/angular                9.1.7
+    @schematics/update                 0.901.7
+    ng-packagr                         9.1.5
+    rxjs                               6.5.5
+    typescript                         3.8.3
+    webpack                            4.42.0
+```
 
-## Build
+## Goal
 
-Run `ng build test-lib` to build the project. The build artifacts will be stored in the `dist/` directory.
+Add custom declaration files to each secondary entry point. Not a duplicate of [#193](https://github.com/ng-packagr/ng-packagr/issues/193).
 
-## Publishing
+## Steps to reproduce
 
-After building your library with `ng build test-lib`, go to the dist folder `cd dist/test-lib` and run `npm publish`.
+1. Clone this repo
+2. Run `npm install`
+3. Run `ng build --project test-lib`.
 
-## Running unit tests
+Points to note after building:
 
-Run `ng test test-lib` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. The secondary entry points are created successfully in `dist/test-lib`
+2. Each entry point folder has the `d.ts` file
+3. The triple-slash reference is off in the `name.component.d.ts` and `time.component.d.ts` since it matches the `types` string elements in `tsconfig.lib.json`.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
